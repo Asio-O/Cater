@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CB1E4CD1-41E5-4DE0-8661-00A844980345}</ProjectGuid>
+    <ProjectGuid>{C93D4900-F138-4CE8-A890-48E2438EB205}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UI</RootNamespace>
@@ -46,14 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="test\FormManagerInfo.cs">
+    <Compile Include="FormManageInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="test\FormManagerInfo.Designer.cs">
-      <DependentUpon>FormManagerInfo.cs</DependentUpon>
+    <Compile Include="FormManageInfo.Designer.cs">
+      <DependentUpon>FormManageInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormManageInfo.resx">
+      <DependentUpon>FormManageInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -75,20 +78,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BLL\Bll.csproj">
-      <Project>{25271f15-99e7-4a49-ac5f-2d1f5a0e329c}</Project>
-      <Name>Bll</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{e9a76b9d-9982-4c84-a1cd-f5599b541024}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{8a87e21f-54b2-44fe-bb60-39b272c61b9a}</Project>
-      <Name>Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
