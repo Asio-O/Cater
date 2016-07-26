@@ -69,5 +69,18 @@ namespace UI
                 e.Value = Convert.ToInt32(e.Value) == 1 ? "经理" : "店员";
             }
         }
+
+        private void dgvList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //获取当前双击的单元格的行值
+            DataGridViewRow row= dgvList.Rows[e.RowIndex];
+            //通过索引从行中获取列的值
+            txtId.Text = row.Cells[0].Value.ToString();
+            txtName.Text = row.Cells[1].Value.ToString();
+            if (row.Cells[2].Value.ToString().Equals("1"))
+            {
+                rb1.Checked = true;
+            }
+        }
     }
 }

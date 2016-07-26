@@ -57,5 +57,26 @@ namespace Dal
             //执行插入操作
             return SqliteHelper.ExecuteNonQuery(sql, ps);
         }
+        /// <summary>
+        /// 更新数据
+        /// </summary>
+        /// <param name="mi">ManagerInfo类型的对象</param>
+        /// <returns>受影响的行数</returns>
+        public int Update(ManagerInfo mi)
+        {
+            //构造UPdate的sql语句
+            string sql = "update ManagerInfo set mname=@name,mpwd=@pwd,mtype=@type where mid=@id";
+            //构造语句的参数
+            SQLiteParameter[] ps =
+            {
+                new SQLiteParameter("@name",mi.MName),
+                new SQLiteParameter("@pwd",mi.MPwd),
+                new SQLiteParameter("@type",mi.Mtype),
+                new SQLiteParameter("@mid",mi.Mid)
+            };
+            //执行语句并返回结果
+            return SqliteHelper.ExecuteNonQuery(sql, ps);
+        }
+
     }
 }
