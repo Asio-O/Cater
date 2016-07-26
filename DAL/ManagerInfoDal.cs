@@ -31,13 +31,18 @@ namespace Dal
                     Mid = Convert.ToInt32(row["mid"]),
                     MName = row["mname"].ToString(),
                     MPwd = row["mpwd"].ToString(),
-                    Mtype = row["mtype"].ToString()
+                    Mtype = Convert.ToInt32(row["mtype"])
                 });
             }
             //将集合返回
             return list;
         }
 
+        /// <summary>
+        /// 插入数据
+        /// </summary>
+        /// <param name="mi">ManagerInfo类型的对象</param>
+        /// <returns>受影响的行数</returns>
         public int Insert(ManagerInfo mi)
         {
             //构造Insert语句
