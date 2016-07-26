@@ -12,7 +12,7 @@ namespace Dal
     class SqliteHelper
     {
         //从配置文件中读取连接字符串
-        private static string connStr = ConfigurationManager.ConnectionStrings["itcastCater"].ConnectionString;
+        private static string connStr = ConfigurationManager.ConnectionStrings["Cater"].ConnectionString;
 
         //执行命令的方法：insert，update，delete 
         public static int ExecuteNonQuery(string sql,params SQLiteParameter[] ps)//使用Params可变参数，省略手动构造数组的过程 ，直接指定对象，编译器自动为我们构造数组，并将对象加入数组中传递过来
