@@ -1,4 +1,5 @@
-﻿using Dal;
+﻿using Common;
+using Dal;
 using Model;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,35 @@ namespace Bll
         public bool Remove(int id)
         {
             return miDal.Delete(id) > 0;
+        }
+
+        public LoginState Login(string name, string pwd, out int type)
+        {
+            //根据用户名进行对象的查询
+            ManagerInfo mi = miDal.GetByName(name);
+
+            //设置type默认值，如果为此值时，不会使用
+            type = -1;
+            if (mi == null)
+            {
+                //用户名错误
+                return LoginState.NameError;
+            }
+            else
+            {
+                //用户名正确
+                if (mi.MPwd.Equals(Md5Helper.EncryptString(pwd)))
+                {
+                    //密码正确登陆成功
+                    type = mi.Mtype;
+                    return LoginState.Ok;
+                }
+                else
+                {
+                    //密码错误
+                    return LoginState.PwdError;
+                }
+            }
         }
     }
 }

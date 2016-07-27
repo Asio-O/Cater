@@ -15,8 +15,16 @@ namespace Dal
         private static string connStr = ConfigurationManager.ConnectionStrings["Cater"].ConnectionString;
 
         //执行命令的方法：insert，update，delete 
-        public static int ExecuteNonQuery(string sql,params SQLiteParameter[] ps)//使用Params可变参数，省略手动构造数组的过程 ，直接指定对象，编译器自动为我们构造数组，并将对象加入数组中传递过来
+        /// <summary>
+        /// 执行sql语句
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="ps"></param>
+        /// <returns>受影响的行数</returns>
+
+        public static int ExecuteNonQuery(string sql, params SQLiteParameter[] ps)
         {
+            //使用Params可变参数，省略手动构造数组的过程 ，直接指定对象，编译器自动为我们构造数组，并将对象加入数组中传递过来
             using (SQLiteConnection conn = new SQLiteConnection(connStr))
             {
                 //创建连接对象
@@ -30,8 +38,13 @@ namespace Dal
             }
         }
 
-        //获取首行首列的方法
-        public static object ExecuteScalar(string sql,params SQLiteParameter[] ps)
+        /// <summary>
+        /// 获取首行首列的方法
+        /// </summary>
+        /// <param name="sql">sql查询语句</param>
+        /// <param name="ps">sql语句参数数组</param>
+        /// <returns>首行首列</returns>
+        public static object ExecuteScalar(string sql, params SQLiteParameter[] ps)
         {
             using (SQLiteConnection conn = new SQLiteConnection(connStr))
             {
@@ -43,7 +56,12 @@ namespace Dal
             }
         }
 
-        //获取结果集
+        /// <summary>
+        /// 获取结果集
+        /// </summary>
+        /// <param name="sql">sql查询语句</param>
+        /// <param name="ps">sql语句参数数组</param>
+        /// <returns>结果集</returns>
         public static DataTable GetDataTable(string sql, params SQLiteParameter[] ps)
         {
             using (SQLiteConnection conn = new SQLiteConnection(connStr))

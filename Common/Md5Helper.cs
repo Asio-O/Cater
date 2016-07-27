@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Common
 {
-    public partial class Md5Help
+    public partial class Md5Helper
     {
         public static string EncryptString(string str)
         {

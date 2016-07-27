@@ -50,7 +50,7 @@ namespace Dal
             SQLiteParameter[] ps =//使用数组
             {
                new SQLiteParameter("@name", mi.MName),
-               new SQLiteParameter("@pwd",Md5Help.EncryptString(mi.MPwd)),//将密码进行MD5加密
+               new SQLiteParameter("@pwd",Md5Helper.EncryptString(mi.MPwd)),//将密码进行MD5加密
                new SQLiteParameter("@type",mi.Mtype),
             };
             //执行插入操作
@@ -72,13 +72,13 @@ namespace Dal
             if (mi.MPwd.Equals("这永远不可能是一个密码"))
             {
                 sql += ",mpwd=@pwd";
-                listPs.Add(new SQLiteParameter("@pwd", Md5Help.EncryptString(mi.MPwd)));
+                listPs.Add(new SQLiteParameter("@pwd", Md5Helper.EncryptString(mi.MPwd)));
             }
             //继续拼接sql
             sql += ",mtype=@type where mid=@id";
             listPs.Add(new SQLiteParameter("@type", mi.Mtype));
             listPs.Add(new SQLiteParameter("@id", mi.Mid));
-           
+
             //执行语句并返回结果
             return SqliteHelper.ExecuteNonQuery(sql, listPs.ToArray());
         }
@@ -86,7 +86,7 @@ namespace Dal
         /// 根据编号删除数据
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>受影响的行数</returns>
         public int Delete(int id)
         {
             //构造删除的sql语句
@@ -95,6 +95,35 @@ namespace Dal
             SQLiteParameter p = new SQLiteParameter("@id", id);
             //执行操作
             return SqliteHelper.ExecuteNonQuery(sql, p);
+        }
+
+        public ManagerInfo GetByName(string name)
+        {
+            //定义一个对象
+            ManagerInfo mi = null;
+            //构造sql查询语句
+            string sql = "select * from ManagerInfo where mname=@name";
+            //构造参数
+            SQLiteParameter p = new SQLiteParameter("@name", name);
+            //执行查询得到结果
+            DataTable dt = SqliteHelper.GetDataTable(sql, p);
+            //判断是否根据用户名查找到了对象
+            if (dt.Rows.Count > 0)
+            {
+                //用户名存在
+                mi = new ManagerInfo()
+                {
+                    Mid = Convert.ToInt32(dt.Rows[0][0]),
+                    MName = name,
+                    MPwd = dt.Rows[0][2].ToString(),
+                    Mtype = Convert.ToInt32(dt.Rows[0][3]),
+                };
+            }
+            else
+            {
+                //用户名不存在
+            }
+            return mi;
         }
     }
 }
