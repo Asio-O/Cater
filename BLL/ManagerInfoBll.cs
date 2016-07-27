@@ -23,10 +23,15 @@ namespace Bll
         {
             return miDal.Insert(mi) > 0;
         }
-        
+
         public bool Edit(ManagerInfo mi)
         {
-            return miDal.Update(mi)>0;
+            return miDal.Update(mi) > 0;
+        }
+
+        public bool Remove(int id)
+        {
+            return miDal.Delete(id) > 0;
         }
     }
 }

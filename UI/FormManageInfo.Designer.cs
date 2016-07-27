@@ -77,9 +77,11 @@
             this.Column3});
             this.dgvList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvList.Location = new System.Drawing.Point(3, 17);
+            this.dgvList.MultiSelect = false;
             this.dgvList.Name = "dgvList";
             this.dgvList.ReadOnly = true;
             this.dgvList.RowTemplate.Height = 23;
+            this.dgvList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvList.Size = new System.Drawing.Size(347, 288);
             this.dgvList.TabIndex = 0;
             this.dgvList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvList_CellDoubleClick);
@@ -116,7 +118,7 @@
             this.txtId.ReadOnly = true;
             this.txtId.Size = new System.Drawing.Size(157, 21);
             this.txtId.TabIndex = 12;
-            this.txtId.Text = "添加时无编号";
+            this.txtId.Text = "自动添加编号";
             // 
             // btnRemove
             // 
@@ -129,6 +131,7 @@
             this.btnRemove.TabIndex = 4;
             this.btnRemove.Text = "删除选中的店员";
             this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // label4
             // 
@@ -206,6 +209,7 @@
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "取消";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSave
             // 

@@ -37,7 +37,6 @@ namespace Dal
             //将集合返回
             return list;
         }
-
         /// <summary>
         /// 插入数据
         /// </summary>
@@ -64,19 +63,38 @@ namespace Dal
         /// <returns>受影响的行数</returns>
         public int Update(ManagerInfo mi)
         {
+            //定义参数集合，可以动态增减元素
+            List<SQLiteParameter> listPs = new List<SQLiteParameter>();
             //构造UPdate的sql语句
-            string sql = "update ManagerInfo set mname=@name,mpwd=@pwd,mtype=@type where mid=@id";
-            //构造语句的参数
-            SQLiteParameter[] ps =
+            string sql = "update ManagerInfo set mname=@name";
+            listPs.Add(new SQLiteParameter("@name", mi.MName));
+            //判断是否修改密码
+            if (mi.MPwd.Equals("这永远不可能是一个密码"))
             {
-                new SQLiteParameter("@name",mi.MName),
-                new SQLiteParameter("@pwd",mi.MPwd),
-                new SQLiteParameter("@type",mi.Mtype),
-                new SQLiteParameter("@mid",mi.Mid)
-            };
+                sql += ",mpwd=@pwd";
+                listPs.Add(new SQLiteParameter("@pwd", Md5Help.EncryptString(mi.MPwd)));
+            }
+            //继续拼接sql
+            sql += ",mtype=@type where mid=@id";
+            listPs.Add(new SQLiteParameter("@type", mi.Mtype));
+            listPs.Add(new SQLiteParameter("@id", mi.Mid));
+           
             //执行语句并返回结果
-            return SqliteHelper.ExecuteNonQuery(sql, ps);
+            return SqliteHelper.ExecuteNonQuery(sql, listPs.ToArray());
         }
-
+        /// <summary>
+        /// 根据编号删除数据
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int Delete(int id)
+        {
+            //构造删除的sql语句
+            string sql = "delete from ManagerInfo where mid=@id";
+            //构造参数
+            SQLiteParameter p = new SQLiteParameter("@id", id);
+            //执行操作
+            return SqliteHelper.ExecuteNonQuery(sql, p);
+        }
     }
 }
