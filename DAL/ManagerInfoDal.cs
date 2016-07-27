@@ -69,7 +69,7 @@ namespace Dal
             string sql = "update ManagerInfo set mname=@name";
             listPs.Add(new SQLiteParameter("@name", mi.MName));
             //判断是否修改密码
-            if (mi.MPwd.Equals("这永远不可能是一个密码"))
+            if (!mi.MPwd.Equals("这永远不可能是一个密码"))
             {
                 sql += ",mpwd=@pwd";
                 listPs.Add(new SQLiteParameter("@pwd", Md5Helper.EncryptString(mi.MPwd)));

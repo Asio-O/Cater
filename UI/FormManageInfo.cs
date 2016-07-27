@@ -14,11 +14,21 @@ namespace UI
 {
     public partial class FormManageInfo : Form
     {
-        public FormManageInfo()
+        private FormManageInfo()
         {
             InitializeComponent();
         }
 
+        //实现窗体的单例
+        private static FormManageInfo _form;
+        public static FormManageInfo Create()
+        {
+            if (_form == null)
+            {
+                _form = new FormManageInfo();
+            }
+            return _form;
+        }
         //创建业务逻辑层对象
         ManagerInfoBll miBll = new ManagerInfoBll();
 
@@ -151,6 +161,13 @@ namespace UI
             {
                 MessageBox.Show("请先选择要删除的行");
             }
+        }
+
+        private void FormManageInfo_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //与单例保持一致
+            //出现这种代码的原因：Form的close()会释放当前窗体对象
+            _form = null;
         }
     }
 }

@@ -39,5 +39,12 @@ namespace UI
                 menuManagerInfo.Visible = false;
             }
         }
+
+        private void menuManagerInfo_Click(object sender, EventArgs e)
+        {
+            FormManageInfo formManagerInfo = FormManageInfo.Create();
+            formManagerInfo.Show();//显示窗体
+            formManagerInfo.Focus();//获得焦点
+        }
     }
 }
