@@ -347,7 +347,8 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "FormMemberInfo";
-            this.Text = "FormMemberInfo";
+            this.Text = "会员管理";
+            this.Load += new System.EventHandler(this.FormMemberInfo_Load);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvList)).EndInit();

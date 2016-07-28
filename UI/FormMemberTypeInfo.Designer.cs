@@ -77,6 +77,7 @@
             this.dgvList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvList.Size = new System.Drawing.Size(343, 225);
             this.dgvList.TabIndex = 0;
+            this.dgvList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvList_CellDoubleClick);
             // 
             // Column1
             // 
@@ -126,6 +127,7 @@
             this.btnRemove.TabIndex = 18;
             this.btnRemove.Text = "删除选中的行数据";
             this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // label9
             // 
@@ -145,6 +147,7 @@
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "取消";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // txtDiscount
             // 
@@ -167,7 +170,7 @@
             this.txtId.ReadOnly = true;
             this.txtId.Size = new System.Drawing.Size(117, 21);
             this.txtId.TabIndex = 4;
-            this.txtId.Text = "添加时无编号";
+            this.txtId.Text = "自动添加编号";
             // 
             // btnSave
             // 
