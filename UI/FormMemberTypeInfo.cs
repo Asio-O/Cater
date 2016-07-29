@@ -14,9 +14,11 @@ namespace UI
 {
     public partial class FormMemberTypeInfo : Form
     {
+        private DialogResult result;
         public FormMemberTypeInfo()
         {
             InitializeComponent();
+            result = DialogResult.Cancel;
         }
         //创建业务逻辑层对象
         MemberTypeInfoBll mtiBll = new MemberTypeInfoBll();
@@ -46,6 +48,7 @@ namespace UI
                 if (mtiBll.Add(mti))
                 {
                     LoadList();
+                    result = DialogResult.OK;
                 }
                 else
                 {
@@ -58,6 +61,7 @@ namespace UI
                 if (mtiBll.Edit(mti))
                 {
                     LoadList();
+                    result = DialogResult.OK;
                 }
                 else
                 {
@@ -105,12 +109,18 @@ namespace UI
             if (mtiBll.Remove(id))
             {
                 LoadList();
+                result = DialogResult.OK;
             }
             else
             {
                 MessageBox.Show("删除失败");
             }
             
+        }
+
+        private void FormMemberTypeInfo_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.DialogResult = result;
         }
     }
 }

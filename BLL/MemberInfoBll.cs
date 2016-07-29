@@ -10,19 +10,29 @@ namespace Bll
 {
     public partial class MemberInfoBll
     {
-        MemberInfoDal miDll;
+        MemberInfoDal miDal;
         public MemberInfoBll()
         {
-            miDll = new MemberInfoDal();
+            miDal = new MemberInfoDal();
         }
         public List<MemberInfo> GetList(Dictionary<string,string> dic)
         {
-            return miDll.GetList(dic);
+            return miDal.GetList(dic);
         }
 
         public bool Add(MemberInfo mi)
         {
-            return miDll.Insert(mi)>0;
+            return miDal.Insert(mi)>0;
+        }
+
+        public bool Edit(MemberInfo mi)
+        {
+            return miDal.Update(mi) > 0;
+        }
+
+        public bool Remove(int id)
+        {
+            return miDal.Delete(id) > 0;
         }
     }
 }

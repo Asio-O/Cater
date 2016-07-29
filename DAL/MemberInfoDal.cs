@@ -53,7 +53,11 @@ namespace Dal
             }
             return list;
         }
-
+        /// <summary>
+        /// 添加一行数据
+        /// </summary>
+        /// <param name="mi">MemberInfo类型</param>
+        /// <returns>受影响的行</returns>
         public int Insert(MemberInfo mi)
         {
             string sql = "insert into MemberInfo(MTypeId,MName,MPhone,MMoney) values(@typeId,@name,@phone,@money)";
@@ -65,6 +69,31 @@ namespace Dal
                 new SQLiteParameter("@money",mi.MMoney)
             };
             return SqliteHelper.ExecuteNonQuery(sql, ps);
+        }
+        /// <summary>
+        /// 更新数据
+        /// </summary>
+        /// <param name="mi">需要更新的对象</param>
+        /// <returns>被更新的行数</returns>
+        public int Update(MemberInfo mi)
+        {
+            string sql = "update MemberInfo set MName=@name,MPhone=@phone,MMoney=@money,MTypeId=@typeId where MId=@id";
+            SQLiteParameter[] ps =
+            {
+                new SQLiteParameter("@name",mi.MName),
+                new SQLiteParameter("@phone",mi.MPhone),
+                new SQLiteParameter("@money",mi.MMoney),
+                new SQLiteParameter("@typeId",mi.MTypeId),
+                new SQLiteParameter("@id",mi.MId)
+            };
+            return SqliteHelper.ExecuteNonQuery(sql,ps);
+        }
+
+        public int Delete(int id)
+        {
+            string sql = "update MemberInfo set MIsDelete=1 where MId=@id";
+            SQLiteParameter p = new SQLiteParameter("@id", id);
+            return SqliteHelper.ExecuteNonQuery(sql, p);
         }
     }
 }

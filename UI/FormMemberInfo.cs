@@ -50,6 +50,12 @@ namespace UI
             //禁用列表的自动生成
             dgvList.AutoGenerateColumns = false;
             dgvList.DataSource = miBll.GetList(dic);
+            //设置某行选中
+            if (dgvSelectedIndex==-1)
+            {
+                return;
+            }
+            dgvList.Rows[dgvSelectedIndex].Selected = true;
         }
         private void LoadTypeList()
         {
@@ -85,6 +91,14 @@ namespace UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            //值的有效性判断
+            if (txtNameAdd.Text == "")
+            {
+                MessageBox.Show("请输入姓名");
+                //使输入框获得焦点  
+                txtNameAdd.Focus();
+                return;
+            }
             //无论是添加还是修改都需要一个对象接受用户输入的数据
             MemberInfo mi = new MemberInfo()
             {
@@ -107,7 +121,80 @@ namespace UI
             }
             else//修改
             {
+                mi.MId = Convert.ToInt32(txtId.Text);
+                if (miBll.Edit(mi))
+                {
+                    LoadList();
+                }
+                else
+                {
+                    MessageBox.Show("修改失败");
+                }
+            }
+            //恢复各控件为默认值
+            txtId.Text = "自动添加编号";
+            txtNameAdd.Text = "";
+            ddlType.Text = "";
+            txtPhoneAdd.Text = "";
+            txtMoney.Text = "";
+            btnSave.Text = "添加";
+        }
 
+        private int dgvSelectedIndex=-1;
+        private void dgvList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //记录被点击的行
+            dgvSelectedIndex = e.RowIndex;
+            //获取被双击的行
+            var row = dgvList.Rows[e.RowIndex];
+            //获取被双击行 各列的值
+            txtId.Text = row.Cells[0].Value.ToString();
+            txtNameAdd.Text = row.Cells[1].Value.ToString();
+            ddlType.Text = row.Cells[2].Value.ToString();
+            txtPhoneAdd.Text = row.Cells[3].Value.ToString();
+            txtMoney.Text = row.Cells[4].Value.ToString();
+            //将添加按钮改为修改
+            btnSave.Text = "修改";
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            //恢复各控件为默认值
+            txtId.Text = "自动添加编号";
+            txtNameAdd.Text = "";
+            ddlType.Text = "";
+            txtPhoneAdd.Text = "";
+            txtMoney.Text = "";
+            btnSave.Text = "添加";
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            int id = Convert.ToInt32(dgvList.SelectedRows[0].Cells[0].Value);
+            if (MessageBox.Show("确定要删除吗","提示",MessageBoxButtons.OKCancel)==DialogResult.Cancel)
+            {
+                return;
+            }
+            if (miBll.Remove(id))
+            {
+                LoadList();
+            }
+            else
+            {
+                MessageBox.Show("删除失败");
+            }
+        }
+
+        private void btnAddType_Click(object sender, EventArgs e)
+        {
+            FormMemberTypeInfo formMti = new FormMemberTypeInfo();
+            //以模态窗口的方式打开分类管理
+            DialogResult result= formMti.ShowDialog();
+            //根据返回值进行判断是否更新下拉列表
+            if (result==DialogResult.OK)
+            {
+                LoadTypeList();
+                LoadList();
             }
         }
     }
