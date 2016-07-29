@@ -9,8 +9,8 @@ namespace Model
 	{
 		public MemberInfo()
 		{}
-		#region Model
-		private int _mid;
+        #region Model
+        private int _mid;
 		private int? _mtypeid;
 		private string _mname;
 		private string _mphone;
