@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
 
-namespace _01复习
+namespace Text
 {
     public partial class Form1 : Form
     {

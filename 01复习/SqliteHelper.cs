@@ -7,7 +7,7 @@ using System.Configuration;
 using System.Data.SQLite;
 using System.Data;
 
-namespace _01复习
+namespace Text
 {
     class SqliteHelper
     {

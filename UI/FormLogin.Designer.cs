@@ -61,6 +61,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(166, 32);
             this.txtName.TabIndex = 1;
+            this.txtName.Text = "111";
             // 
             // txtPwd
             // 
@@ -70,6 +71,7 @@
             this.txtPwd.PasswordChar = '*';
             this.txtPwd.Size = new System.Drawing.Size(166, 32);
             this.txtPwd.TabIndex = 1;
+            this.txtPwd.Text = "111";
             // 
             // FormLogin
             // 
@@ -83,6 +85,7 @@
             this.Controls.Add(this.btnLogin);
             this.Name = "FormLogin";
             this.Text = "登陆";
+            this.Load += new System.EventHandler(this.FormLogin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

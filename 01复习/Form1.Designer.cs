@@ -1,4 +1,4 @@
-﻿namespace _01复习
+﻿namespace Text
 {
     partial class Form1
     {

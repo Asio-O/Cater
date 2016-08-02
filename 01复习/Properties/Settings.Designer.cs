@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace _01复习.Properties {
+namespace Text.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

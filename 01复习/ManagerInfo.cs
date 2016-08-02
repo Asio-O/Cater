@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _01复习
+namespace Text
 {
     public partial class ManagerInfo
     {
