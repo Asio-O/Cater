@@ -1,4 +1,5 @@
 ﻿using Bll;
+using Model;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using System;
@@ -84,13 +85,41 @@ namespace UI.test
                 cellData2.SetCellValue(mi.MPwd);
 
                 ICell cellData3 = rowData.CreateCell(3);
-                cellData3.SetCellValue(mi.Mtype==1?"经理":"店员");
+                cellData3.SetCellValue(mi.Mtype == 1 ? "经理" : "店员");
 
             }
             //保存工作本
             using (FileStream stream = new FileStream(@"C:\Users\yangf\Desktop\ti.xlsx", FileMode.Create))
             {
-                workbook.Write(stream); 
+                workbook.Write(stream);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //1、读取excel数据，存入list中
+            List<ManagerInfo> list = new List<ManagerInfo>();
+            using (FileStream stream = new FileStream(@"C:\Users\yangf\Desktop\ti.xlsx", FileMode.Open))
+            {
+                //创建工作簿
+                IWorkbook workbook = new XSSFWorkbook(stream);
+                //读取
+                ISheet sheet = workbook.GetSheet("管理员");
+                //读取正文数据，0、1行为标题，直接跳过
+                int rowIndex = 2;
+                while (sheet.GetRow(rowIndex) != null)
+                {
+                    IRow rowData = sheet.GetRow(rowIndex++);
+                    list.Add(new ManagerInfo()
+                    {
+                        Mid =(int)rowData.GetCell(0).NumericCellValue,
+                        MName = rowData.GetCell(1).StringCellValue,
+                        MPwd = rowData.GetCell(2).StringCellValue,
+                        Mtype = rowData.GetCell(3).StringCellValue == "经理" ? 1 : 0
+                    });
+                }
+                //将list赋值给datagridview
+                dataGridView1.DataSource = list;
             }
         }
     }
