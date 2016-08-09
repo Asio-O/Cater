@@ -34,7 +34,7 @@ namespace WebApp
             mi.Mtype = Convert.ToInt32(Request.Form["type"]);
             if (miBll.Edit(mi))
             {
-                Response.Write("修改成功<a href='ManagerInfoList.aspx'>返回信息列表</a>");
+                Response.Write("修改成功  <a href='ManagerInfoList.aspx'>返回信息列表</a>");
             }
             else
             {
