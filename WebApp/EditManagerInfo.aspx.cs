@@ -45,6 +45,10 @@ namespace WebApp
         {
             mi.Mid = Convert.ToInt32(Request.Params["id"]);
             mi = miBll.GetById(mi.Mid);
+            if (mi==null)
+            {
+                Response.Redirect("Error.html");
+            }
         }
     }
 }

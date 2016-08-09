@@ -69,9 +69,11 @@
     <Content Include="AddManager.aspx" />
     <Content Include="css\tableStyle.css" />
     <Content Include="EditManagerInfo.aspx" />
+    <Content Include="Error.html" />
     <Content Include="ManagerInfoList.aspx" />
     <Content Include="packages.config" />
     <Content Include="AddManagerInfo.ashx" />
+    <Content Include="DeleteManagerInfo.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -93,6 +95,9 @@
     </Compile>
     <Compile Include="AddManagerInfo.ashx.cs">
       <DependentUpon>AddManagerInfo.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteManagerInfo.ashx.cs">
+      <DependentUpon>DeleteManagerInfo.ashx</DependentUpon>
     </Compile>
     <Compile Include="EditManagerInfo.aspx.cs">
       <DependentUpon>EditManagerInfo.aspx</DependentUpon>
