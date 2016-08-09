@@ -19,7 +19,11 @@ namespace Bll
             //调用查询方法
             return miDal.GetList();
         }
-
+        /// <summary>
+        /// 添加方法
+        /// </summary>
+        /// <param name="mi">ManagerInfo对象</param>
+        /// <returns>布尔值，操作是否成功</returns>
         public bool Add(ManagerInfo mi)
         {
             return miDal.Insert(mi) > 0;
@@ -33,6 +37,11 @@ namespace Bll
         public bool Remove(int id)
         {
             return miDal.Delete(id) > 0;
+        }
+
+        public ManagerInfo GetById(int id)
+        {
+            return miDal.GetById(id);
         }
 
         public LoginState Login(string name, string pwd, out int type)

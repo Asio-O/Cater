@@ -125,5 +125,33 @@ namespace Dal
             }
             return mi;
         }
+        public ManagerInfo GetById(int id)
+        {
+            //定义一个对象
+            ManagerInfo mi = null;
+            //构造sql查询语句
+            string sql = "select * from ManagerInfo where mid=@id";
+            //构造参数
+            SQLiteParameter p = new SQLiteParameter("@id", id);
+            //执行查询得到结果
+            DataTable dt = SqliteHelper.GetDataTable(sql, p);
+            //判断是否根据id查找到了对象
+            if (dt.Rows.Count > 0)
+            {
+                //id存在
+                mi = new ManagerInfo()
+                {
+                    Mid = Convert.ToInt32(dt.Rows[0][0]),
+                    MName = dt.Rows[0][1].ToString(),
+                    MPwd = dt.Rows[0][2].ToString(),
+                    Mtype = Convert.ToInt32(dt.Rows[0][3]),
+                };
+            }
+            else
+            {
+                //id不存在
+            }
+            return mi;
+        }
     }
 }

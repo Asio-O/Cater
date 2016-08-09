@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <form action="AddManagerInfo.ashx" method="post">
+        <table>
+            <tr>
+                <td>名字 </td>
+                <td>
+                    <input type="text" name="name" /></td>
+            </tr>
+            <tr>
+                <td>密码 </td>
+                <td>
+                    <input type="text" name="pwd" /></td>
+            </tr>
+            <tr>
+                <td>职位 </td>
+                <td>
+                    <select name="type">
+                        <option value="1">经理</option>
+                        <option value="2">员工</option>
+                    </select></td>
+            </tr>
+        </table>
+        <input type="submit" value="添加员工" />
+</body>
+</html>
