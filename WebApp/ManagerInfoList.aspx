@@ -11,10 +11,10 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <a href="AddManagerInfo.html">添加人员</a>
+        <a href="AddManager.aspx">添加人员</a>
         <table class="table">
             <tr>
-                <th>编号</th><th>用户名</th><th>密码</th><th>职位</th><th>修改</th><th>删除</th>
+                <th>编号</th><th>用户名</th><th>密码</th><th>职位</th><th>编辑</th><th>删除</th>
             </tr>
             <%=listStr %>
         </table>

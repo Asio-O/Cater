@@ -19,7 +19,7 @@
                 <tr>
                     <td>密码 </td>
                     <td>
-                        <input type="text" name="pwd" /></td>
+                        <input type="password" name="pwd" /></td>
                 </tr>
                 <tr>
                     <td>职位 </td>
